@@ -1,0 +1,48 @@
+#!/bin/bash
+set -eu
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  READLINK=greadlink
+else
+  READLINK=readlink
+fi
+SCRIPTPATH=$($READLINK -f $0)
+SCRIPTDIR=$(dirname $SCRIPTPATH)
+REPODIR=$(dirname $SCRIPTDIR)
+
+if [ $# -lt 1 ]; then
+  echo Specify command
+  exit 1
+fi
+if [[ "$1" == "stats" ]]; then
+  GHCOPTS='-O2 -rtsopts -threaded'
+  EXECOPTS='+RTS -s'
+elif [[ "$1" == "threadscope" ]]; then
+  GHCOPTS='+RTS -N2 -l'
+  EXECOPTS='-O2 -rtsopts -threaded -eventlog'
+else
+  echo Unknown command: $1
+  exit 1
+fi
+shift
+
+if [ $# -lt 1 ]; then
+  echo Specify program
+  exit 1
+fi
+PROGRAM=$1
+shift
+
+if [ $# -lt 1 ]; then
+  echo Specify one or more arguments
+  exit 1
+fi
+
+cd $REPODIR
+OUTDIR=.out
+if [ ! -d $OUTDIR ]; then
+  mkdir -p $OUTDIR
+fi
+set -x
+stack ghc -- -odir $OUTDIR -hidir $OUTDIR -o $OUTDIR/$PROGRAM $GHCOPTS src/$PROGRAM.hs
+stack exec -- $OUTDIR/$PROGRAM $* $EXECOPTS
+set +x
