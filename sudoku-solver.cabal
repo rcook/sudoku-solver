@@ -17,7 +17,7 @@ source-repository head
   location:           https://github.com/rcook/sudoku-solver.git
 
 library
-  ghc-options:        -O2 -rtsopts
+  ghc-options:        -O2 -rtsopts -threaded
   default-language:   Haskell2010
   hs-source-dirs:     lib
   exposed-modules:    Sudoku
@@ -25,9 +25,19 @@ library
                     , base >= 4.7 && < 5
 
 executable sudoku1
-  ghc-options:        -O2 -rtsopts
+  ghc-options:        -O2 -rtsopts -threaded
   default-language:   Haskell2010
   hs-source-dirs:     src
   main-is:            sudoku1.hs
   build-depends:      base >= 4.7 && < 5
+                    , sudoku-solver
+
+executable sudoku2
+  ghc-options:        -O2 -rtsopts -threaded
+  default-language:   Haskell2010
+  hs-source-dirs:     src
+  main-is:            sudoku2.hs
+  build-depends:      base >= 4.7 && < 5
+                    , deepseq
+                    , parallel
                     , sudoku-solver
