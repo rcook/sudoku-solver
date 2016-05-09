@@ -12,3 +12,7 @@ flags: {}
 
 # Extra package databases containing global packages
 extra-package-dbs: []
+
+# Compiler options
+ghc-options:
+  "*": -O2 -rtsopts -threaded
