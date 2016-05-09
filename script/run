@@ -15,10 +15,10 @@ if [ $# -lt 1 ]; then
 fi
 if [[ "$1" == "stats" ]]; then
   GHCOPTS='-O2 -rtsopts -threaded'
-  EXECOPTS='+RTS -s'
+  EXECOPTS='+RTS -N2 -s'
 elif [[ "$1" == "threadscope" ]]; then
-  GHCOPTS='+RTS -N2 -l'
-  EXECOPTS='-O2 -rtsopts -threaded -eventlog'
+  GHCOPTS='-O2 -rtsopts -threaded -eventlog'
+  EXECOPTS='+RTS -N2 -l'
 else
   echo Unknown command: $1
   exit 1
@@ -46,3 +46,5 @@ set -x
 stack ghc -- -odir $OUTDIR -hidir $OUTDIR -o $OUTDIR/$PROGRAM $GHCOPTS src/$PROGRAM.hs
 stack exec -- $OUTDIR/$PROGRAM $* $EXECOPTS
 set +x
+mv $PROGRAM.eventlog $OUTDIR/
+echo Event log is at $OUTDIR/$PROGRAM.eventlog
