@@ -11,12 +11,16 @@ REPODIR=$(dirname $SCRIPTDIR)
 
 set +u
 if [[ "$1" == "" ]]; then
-  echo Specify one or more options to sudoku-solver
+  echo Specify target
+  exit 1
+fi
+if [[ "$2" == "" ]]; then
+  echo Specify one or more arguments to solver
   exit 1
 fi
 set -u
 
 cd $REPODIR
 set -x
-stack exec -- sudoku-solver $* +RTS -s
+stack exec -- $* +RTS -s
 set +x
