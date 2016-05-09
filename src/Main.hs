@@ -1,17 +1,6 @@
-module Main (main, testFunction) where
+module Main (main) where
 
-import           Control.Monad (forM_)
-import qualified System.Environment as Env
-
--- | Minimal function including doctest
--- Examples:
--- >>> testFunction "string"
--- "[[string]]"
-testFunction :: String -> String
-testFunction s = "[[" ++ s ++ "]]"
+import Sudoku
 
 main :: IO ()
-main = do
-    putStrLn "sudoku-solver"
-    args <- Env.getArgs
-    forM_ args $ \arg -> putStrLn $ "arg: " ++ arg
+main = print $ solve "......52..8.4......3...9...5.1...6..2..7........3.....6...1..........7.4.......3."
