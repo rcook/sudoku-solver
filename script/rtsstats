@@ -1,0 +1,22 @@
+#!/bin/bash
+set -eu
+if [[ "$OSTYPE" =~ ^darwin ]]; then
+  READLINK=greadlink
+else
+  READLINK=readlink
+fi
+SCRIPTPATH=$($READLINK -f $0)
+SCRIPTDIR=$(dirname $SCRIPTPATH)
+REPODIR=$(dirname $SCRIPTDIR)
+
+set +u
+if [[ "$1" == "" ]]; then
+  echo Specify one or more options to sudoku-solver
+  exit 1
+fi
+set -u
+
+cd $REPODIR
+set -x
+stack exec -- sudoku-solver $* +RTS -s
+set +x
