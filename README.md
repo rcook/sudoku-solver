@@ -15,9 +15,9 @@ $ stack install threadscope --flag gtk:have-quartz-gtk
 
 ## Licence
 
-Released under MIT License
-
-Copyright (c) 2016 Richard Cook
+* Released under BSD3 License
+* Code samples, copyright &copy; Simon Marlow 2011-2013
+* Other material, copyright &copy; Richard Cook 2016
 
 [stack]: https://haskellstack.org/
 [threadscope]: https://wiki.haskell.org/ThreadScope

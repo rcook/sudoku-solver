@@ -1,9 +1,9 @@
 name:                 sudoku-solver
 version:              0.1.0.0
-synopsis:             Simple, clean project template using MIT License by default
+synopsis:             Sudoku solver based on Simon Marlow's code samples
 description:          Please see README.md
 homepage:             https://github.com/rcook/sudoku-solver#readme
-license:              MIT
+license:              BSD3
 license-file:         LICENSE
 author:               Richard Cook
 maintainer:           rcook@rcook.org
