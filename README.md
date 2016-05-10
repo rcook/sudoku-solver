@@ -6,6 +6,13 @@ This project uses [Stack][stack].
 
 ## Installing [ThreadScope][threadscope]
 
+### Ubuntu
+
+```bash
+$ sudo apt-get install libgtk2.0-dev libpango1.0-dev libglib2.0-dev libcairo2-dev
+$ stack install threadscope
+```
+
 ### Mac OS X
 
 ```bash
