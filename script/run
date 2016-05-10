@@ -43,7 +43,7 @@ if [ ! -d $OUTDIR ]; then
   mkdir -p $OUTDIR
 fi
 set -x
-stack ghc -- -odir $OUTDIR -hidir $OUTDIR -o $OUTDIR/$PROGRAM $GHCOPTS src/$PROGRAM.hs
+stack ghc -- -ilib/ -odir $OUTDIR -hidir $OUTDIR -o $OUTDIR/$PROGRAM $GHCOPTS src/$PROGRAM.hs
 stack exec -- $OUTDIR/$PROGRAM $* $EXECOPTS
 set +x
 mv $PROGRAM.eventlog $OUTDIR/
