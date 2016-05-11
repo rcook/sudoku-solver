@@ -46,5 +46,8 @@ set -x
 stack ghc -- -ilib/ -odir $OUTDIR -hidir $OUTDIR -o $OUTDIR/$PROGRAM $GHCOPTS src/$PROGRAM.hs
 stack exec -- $OUTDIR/$PROGRAM $* $EXECOPTS
 set +x
-mv $PROGRAM.eventlog $OUTDIR/
-echo Event log is at $OUTDIR/$PROGRAM.eventlog
+
+if [ -e $PROGRAM.eventlog ]; then
+  mv $PROGRAM.eventlog $OUTDIR/
+  echo Event log is at $OUTDIR/$PROGRAM.eventlog
+fi
