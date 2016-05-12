@@ -1,0 +1,1 @@
+script/run stats sudoku-par1 puzzles/sudoku17.1000.txt
