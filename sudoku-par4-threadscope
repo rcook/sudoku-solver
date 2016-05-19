@@ -1,0 +1,1 @@
+script/run threadscope sudoku-par4 puzzles/sudoku17.1000.txt 2
