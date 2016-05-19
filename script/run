@@ -15,10 +15,10 @@ if [ $# -lt 1 ]; then
 fi
 if [[ "$1" == "stats" ]]; then
   GHCOPTS='-O2 -rtsopts -threaded'
-  EXECOPTS='+RTS -N2 -s'
+  EXECOPTS='+RTS -N -s'
 elif [[ "$1" == "threadscope" ]]; then
   GHCOPTS='-O2 -rtsopts -threaded -eventlog'
-  EXECOPTS='+RTS -N2 -l'
+  EXECOPTS='+RTS -N -l'
 else
   echo Unknown command: $1
   exit 1
